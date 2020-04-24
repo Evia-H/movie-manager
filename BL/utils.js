@@ -1,6 +1,5 @@
 const moviesDal = require("../DAL/moviesDAL");
 const usersDal = require("../DAL/usersDal");
-const { users } = require("../Data/users.json");
 
 const getMoviesData = (exports.getMoviesData = async () => {
   return await moviesDal.getMovies();

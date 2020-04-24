@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <a href="main-menu">Back</a> <br />
+    <a href="user-data">Create New User</a>
+    <table>
+      <tr>
+        <th>Username</th>
+        <th>Created On</th>
+        <th>Number Of Transactions</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% users.forEach(user =>{%>
+      <tr>
+        <td><%=user.username%></td>
+        <td><%=user.createdDate%></td>
+        <td><%=user.numOfTransactions%></td>
+        <td><a href="users/edit/:username">Edit</a></td>
+        <td><a href="users/delete/:username">Delete</a></td>
+      </tr>
+      <% })%>
+    </table>
+  </body>
+</html>
