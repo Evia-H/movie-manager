@@ -1,6 +1,7 @@
 <html>
   <body>
-    <form action="create-movie" method="POST">
+    <a href="main-menu">Back</a><br />
+    <form action="search-movie" method="POST">
       Name: <input type="text" name="name" /><br />
       Language: <br />
       <select name="language">
@@ -9,12 +10,12 @@
         <option value="Spanish">Spanish</option>
       </select>
       Genre: <br />
-      <select name="genres" multiple>
+      <select name="genres">
         <option value="Drama">Drama</option>
         <option value="Comedy">Comedy</option>
         <option value="Scary">Scary</option> </select
       ><br />
-      <button type="submit">Submit</button>
+      <button type="submit">Search</button>
     </form>
   </body>
 </html>

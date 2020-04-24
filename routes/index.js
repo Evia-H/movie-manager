@@ -8,6 +8,10 @@ router.get("/", function (req, res, next) {
   res.render("login");
 });
 
+router.get("/main-menu", function (req, res, next) {
+  res.render("main-menu", { username: session.username });
+});
+
 router.post("/login", function (req, res, next) {
   let { username, password } = req.body;
   session.username = username;
@@ -26,18 +30,36 @@ router.get("/create-movie", function (req, res, next) {
 });
 
 router.post("/create-movie", function (req, res, next) {
-  let { name, language, genre } = req.body;
+  let { name, language, genres } = req.body;
 
   utils.getNextMovieId().then((id) => {
     let newMovie = {
       id,
       name,
       language,
-      genre: genre ? genre : [],
+      genres: genres ? genres : [],
     };
     console.log(newMovie);
     moviesDAL.saveNewMovie(newMovie);
     res.render("main-menu", { username: session.username });
+  });
+});
+
+router.get("/search-movie", function (req, res, next) {
+  res.render("search-movie");
+});
+
+router.post("/search-movie", function (req, res, next) {
+  let { name, language, genres } = req.body;
+
+  utils.findMovies(name, language, genres).then((movies) => {
+    res.render("search-results", { movies });
+  });
+});
+
+router.get("/movie-details/:id", function (req, res, next) {
+  utils.getMovieDetails(req.params.id).then((movie) => {
+    res.render("movie-details", { movie });
   });
 });
 

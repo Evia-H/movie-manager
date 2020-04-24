@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <a href="main-menu">Back</a>
+    <% if(movies.length > 0) {%>
+    <table>
+      <tr>
+        <th>Movie Name</th>
+        <th>Similar Results</th>
+      </tr>
+      <% movies.forEach(movie =>{%>
+      <tr>
+        <td><a href="movie-details/<%=movie.id%>"><%=movie.name%></a></td>
+        <td>
+          <% movie.relatedMovies.forEach(relMovie =>{%>
+          <a href="movie-details/<%=relMovie.id%>"><%=relMovie.name%></a>
+          <% })%>
+        </td>
+      </tr>
+      <% })%>
+    </table>
+    <% }%>
+  </body>
+</html>
