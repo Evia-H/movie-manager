@@ -1,7 +1,7 @@
 <html>
   <body>
-    <a href="main-menu">Back</a> <br />
-    <a href="user-data">Create New User</a>
+    <a href="/main-menu">Back</a> <br />
+    <a href="/users/user-data/">Create New User</a>
     <table>
       <tr>
         <th>Username</th>
@@ -15,8 +15,8 @@
         <td><%=user.username%></td>
         <td><%=user.createdDate%></td>
         <td><%=user.numOfTransactions%></td>
-        <td><a href="users/edit/:username">Edit</a></td>
-        <td><a href="users/delete/:username">Delete</a></td>
+        <td><a href="/users/user-data/<%=user.username%>">Update</a></td>
+        <td><a href="/users/delete-user-data/<%=user.username%>">Delete</a></td>
       </tr>
       <% })%>
     </table>

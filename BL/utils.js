@@ -37,7 +37,7 @@ const getExtendedMovieData = (exports.getExtendedMovieData = async (movies) => {
 });
 
 exports.authenticateUser = async (username, password) => {
-  let { users } = await usersDal.getUsers();
+  let users = await usersDal.getUsers();
   let isAuth =
     users.filter((user) => {
       return user.username === username && user.password === password;
@@ -46,17 +46,17 @@ exports.authenticateUser = async (username, password) => {
   return isAuth;
 };
 
-exports.getNextMovieId = async () => {
+const getNextMovieId = (exports.getNextMovieId = async () => {
   let movies = await getAllMoviesData();
 
   return movies.length + 1;
-};
+});
 
-exports.findMovies = async (name, languageSearch, genre) => {
+exports.findMovies = async (nameSearch, languageSearch, genre) => {
   let movies = await getAllMoviesData();
 
-  if (name) {
-    movies = movies.filter(({ name }) => name.includes(name));
+  if (nameSearch) {
+    movies = movies.filter(({ name }) => name.includes(nameSearch));
     if (movies.length === 0) return [];
   }
 
@@ -78,4 +78,16 @@ exports.findMovies = async (name, languageSearch, genre) => {
 exports.getMovieDetails = async (id) => {
   let movies = await getAllMoviesData();
   return movies.find((x) => x.id == id);
+};
+
+exports.saveNewMovie = async (name, language, genres) => {
+  getNextMovieId().then((id) => {
+    let newMovie = {
+      id,
+      name,
+      language,
+      genres: genres ? genres : [],
+    };
+    moviesDal.saveNewMovie(newMovie);
+  });
 };

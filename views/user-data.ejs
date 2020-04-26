@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <form action="/users/save-user-data" method="POST">
+      Username: <input type="text" name="username" value="<%= user.username %>"
+      <% if(btn !== "Save"){ %> readonly <% } %> />
+      <br />
+      <% if(btn === "Save"){ %> Password:
+      <input type="password" name="password" /><br />
+      <% } else {%>
+      <input type="hidden" name="password" value="<%= user.password %>" />
+      <% } %> Created Date:
+      <input type="datetime" name="createdDate" value="<%=user.createdDate%>" />
+      <br />
+      Number Of Transactions:
+      <input
+        type="number"
+        name="numOfTransactions"
+        value="<%= user.numOfTransactions %>"
+      />
+      <br />
+      <input type="hidden" name="btn" value="<%=btn%>" />
+      <button type="submit"><%=btn %></button>
+    </form>
+  </body>
+</html>

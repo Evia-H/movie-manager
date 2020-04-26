@@ -1,5 +1,12 @@
 <html>
   <body>
+    <% if(message !== ""){ %>
+    <h1><%=message%></h1>
+    <br />
+    <% } %>
+
+    <h1><%=username%></h1>
+    <br />
     <div><a href="search-movie">Search A Movie</a></div>
     <div><a href="create-movie">Create A New Movie</a></div>
     <% if(username === "admin"){%>
